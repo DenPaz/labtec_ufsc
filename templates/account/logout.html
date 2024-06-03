@@ -1,0 +1,20 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Sair" %}
+{% endblock title %}
+{% block card_header %}
+  {% blocktrans %}
+    Tem certeza que deseja sair?
+  {% endblocktrans %}
+{% endblock card_header %}
+{% block card_body %}
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">{% translate "Confirmar" %}</button>
+      </div>
+    </div>
+  </form>
+{% endblock card_body %}

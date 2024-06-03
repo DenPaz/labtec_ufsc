@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block page_breadcrumbs %}
+  <li class="breadcrumb-item">
+    <a href="{% url 'dashboard:index' %}">
+      <i class="fas fa-tachometer-alt"></i>
+      {% translate "Dashboard" %}
+    </a>
+  </li>
+{% endblock page_breadcrumbs %}

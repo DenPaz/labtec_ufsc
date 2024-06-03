@@ -1,0 +1,14 @@
+{% extends "dashboard/_base.html" %}
+{% load static i18n %}
+{% block title %}
+  {% translate "Início" %}
+{% endblock title %}
+{% block page_name %}
+  {% translate "Bemvindo!" %}
+{% endblock page_name %}
+{% block page_breadcrumbs %}
+  {{ block.super }}
+  <li class="breadcrumb-item active">{% translate "Início" %}</li>
+{% endblock page_breadcrumbs %}
+{% block content %}
+{% endblock content %}

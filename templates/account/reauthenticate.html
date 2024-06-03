@@ -1,0 +1,28 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Reautenticar" %}
+{% endblock title %}
+{% block card_header %}
+  {% blocktrans %}
+    Para proteger a segurança da sua conta, por favor, insira sua senha.
+  {% endblocktrans %}
+{% endblock card_header %}
+{% block card_body %}
+  <form method="post" action="{% url 'account_reauthenticate' %}">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+      {{ form.password }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-lock"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">{% translate "Confirmar" %}</button>
+      </div>
+    </div>
+  </form>
+{% endblock card_body %}

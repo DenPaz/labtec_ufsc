@@ -1,0 +1,18 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Conta inativa" %}
+{% endblock title %}
+{% block card_header %}
+  <img src="{% static 'images/warning.svg' %}"
+       alt="warning"
+       height="55"
+       width="" />
+{% endblock card_header %}
+{% block card_body %}
+  <div class="text-center">
+    {% blocktranslate %}
+      Esta conta está inativa. Entre em contato com o suporte para reativá-la.
+    {% endblocktranslate %}
+  </div>
+{% endblock card_body %}

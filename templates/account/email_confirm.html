@@ -1,0 +1,37 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% load account %}
+{% block title %}
+  {% translate "Confirmar e-mail" %}
+{% endblock title %}
+{% block card_header %}
+  {% blocktrans %}
+    Confirmação de e-mail
+  {% endblocktrans %}
+{% endblock card_header %}
+{% block card_body %}
+  {% if confirmation %}
+    {% user_display confirmation.email_address.user as user_display %}
+    <form method="post"
+          action="{% url 'account_confirm_email' confirmation.key %}">
+      {% csrf_token %}
+      <div class="text-center mb-3">
+        {% blocktranslate with confirmation.email_address.email as email %}
+          Por favor, confirme que <a href="mailto:{{ email }}">{{ email }}</a> é um e-mail válido para o usuário <strong>{{ user_display }}</strong>.
+        {% endblocktranslate %}
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary btn-block">{% translate "Confirmar" %}</button>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    {% url 'account_email' as email_url %}
+    <div class="text-center">
+      {% blocktranslate %}
+        Este link de confirmação de e-mail expirou ou é inválido. Por favor, solicite um <a href="{{ email_url }}">novo e-mail de confirmação</a>.
+      {% endblocktranslate %}
+    </div>
+  {% endif %}
+{% endblock card_body %}

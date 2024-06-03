@@ -1,0 +1,53 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Inscrever-se" %}
+{% endblock title %}
+{% block card_header %}
+  {% blocktranslate %}
+    Preencha o formulário para se inscrever
+  {% endblocktranslate %}
+{% endblock card_header %}
+{% block card_body %}
+  <form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+      {{ form.first_name }}
+      {{ form.last_name }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-user"></span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      {{ form.email }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-envelope"></span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      {{ form.password1 }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-lock"></span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      {{ form.password2 }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-lock"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block">{% translate "Criar conta" %}</button>
+      </div>
+    </div>
+  </form>
+{% endblock card_body %}

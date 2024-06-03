@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n %}
+{% block title %}
+  LabTec - UFSC | {% translate "Painel Administrativo" %}
+{% endblock title %}
+{% block extrahead %}
+  <link href="{% static 'images/logo_icon.svg' %}"
+        rel="shortcut icon"
+        type="image/x-icon">
+  {{ block.super }}
+{% endblock extrahead %}
+{% block branding %}
+  <h1 id="site-name">
+    <a href="{% url 'admin:index' %}">{% translate "Painel Administrativo" %}</a>
+  </h1>
+{% endblock branding %}

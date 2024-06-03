@@ -1,0 +1,18 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Registro de contas fechado" %}
+{% endblock title %}
+{% block card_header %}
+  <img src="{% static 'images/closed.svg' %}"
+       alt="warning"
+       height="55"
+       width="" />
+{% endblock card_header %}
+{% block card_body %}
+  <div class="text-center">
+    {% blocktranslate %}
+      Sentimos muito, mas o registro de novas contas está fechado no momento.
+    {% endblocktranslate %}
+  </div>
+{% endblock card_body %}

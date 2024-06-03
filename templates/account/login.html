@@ -1,0 +1,52 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Entrar" %}
+{% endblock title %}
+{% block card_header %}
+  {% blocktranslate %}
+    Digite suas credenciais
+  {% endblocktranslate %}
+{% endblock card_header %}
+{% block card_body %}
+  <form method="post" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+      {{ form.login }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-envelope"></span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      {{ form.password }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-lock"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <div class="icheck-primary">
+          {{ form.remember }}
+          <label for="remember">{{ form.remember.label }}</label>
+        </div>
+      </div>
+      <div class="col-4">
+        <button type="submit" class="btn btn-primary btn-block">{% translate "Entrar" %}</button>
+      </div>
+    </div>
+  </form>
+{% endblock card_body %}
+{% block card_footer %}
+  <p class="mb-1 mt-3 text-right">
+    <a href="{% url 'account_reset_password' %}">{% translate "Esqueceu sua senha?" %}</a>
+  </p>
+  {% if ACCOUNT_ALLOW_REGISTRATION %}
+    <p class="mb-0 text-right">
+      <a href="{% url 'account_signup' %}">{% translate "Inscrever-se" %}</a>
+    </p>
+  {% endif %}
+{% endblock card_footer %}

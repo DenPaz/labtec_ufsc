@@ -1,0 +1,14 @@
+{% load static %}
+<!-- jQuery -->
+<script src="{% static 'adminlte3/plugins/jquery/jquery.min.js' %}"></script>
+<!-- jQuery UI -->
+<script src="{% static 'adminlte3/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>$.widget.bridge('uibutton', $.ui.button);</script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+<!-- DataTables -->
+{% block datatable_js %}
+{% endblock datatable_js %}
+<!-- AdminLTE App -->
+<script src="{% static 'adminlte3/dist/js/adminlte.min.js' %}"></script>

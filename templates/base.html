@@ -1,0 +1,81 @@
+{% load static i18n %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+      {% block title %}
+      {% endblock title %}
+      | LabTec
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LabTec - UFSC">
+    <meta name="keywords" content="LabTec, UFSC">
+    <meta name="author" content="Dennis Paz">
+    <link href="{% static 'images/logo_full.svg' %}" rel="icon">
+    {% block css %}
+      {% include "partials/styles.html" %}
+    {% endblock css %}
+    {% block extra_css %}
+    {% endblock extra_css %}
+  </head>
+  <body class="hold-transition {% block body_class %}sidebar-mini {{ user.profile.get_theme_display }}-mode layout-fixed layout-navbar-fixed{% endblock body_class %}">
+    {% block body %}
+      <div class="wrapper">
+        {% block navbar %}
+          {% include "partials/navbar.html" %}
+        {% endblock navbar %}
+        {% block sidebar %}
+          {% include "partials/sidebar.html" %}
+        {% endblock sidebar %}
+        {% block content_wrapper %}
+          <div class="content-wrapper">
+            {% block content_header %}
+              <section class="content-header">
+                {% block page_header %}
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0">
+                          {% block page_name %}
+                          {% endblock page_name %}
+                        </h1>
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          {% block page_breadcrumbs %}
+                          {% endblock page_breadcrumbs %}
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                {% endblock page_header %}
+              </section>
+            {% endblock content_header %}
+            {% block content_outer %}
+              <section class="content">
+                <div class="container-fluid">
+                  {% block messages %}
+                    {% include "partials/messages.html" %}
+                  {% endblock messages %}
+                  {% block content %}
+                  {% endblock content %}
+                </div>
+              </section>
+            {% endblock content_outer %}
+          </div>
+        {% endblock content_wrapper %}
+        {% block footer %}
+          {% include "partials/footer.html" %}
+        {% endblock footer %}
+      </div>
+    {% endblock body %}
+    {% block js %}
+      {% include "partials/scripts.html" %}
+    {% endblock js %}
+    {% block extra_js %}
+    {% endblock extra_js %}
+  </body>
+</html>

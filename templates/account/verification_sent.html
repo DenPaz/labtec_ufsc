@@ -1,0 +1,18 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Verifique seu e-mail" %}
+{% endblock title %}
+{% block card_header %}
+  <img src="{% static 'images/verify_email.svg' %}"
+       alt="mail_sent"
+       height="55"
+       width="" />
+{% endblock card_header %}
+{% block card_body %}
+  <div class="text-center">
+    {% blocktranslate %}
+      Enviamos um e-mail de verificação. Siga o link fornecido para finalizar o processo de registro. Entre em contato conosco se você não o receber em alguns minutos.
+    {% endblocktranslate %}
+  </div>
+{% endblock card_body %}
