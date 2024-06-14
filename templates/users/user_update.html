@@ -8,13 +8,13 @@
 {% endblock page_name %}
 {% block content %}
   <div class="row">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
-      {{ user_form.as_p }}
-      {{ profile_form.as_p }}
+      {{ form_user.as_p }}
+      {{ form_profile.as_p }}
       <button class="btn btn-primary" type="submit">Save changes</button>
       <a class="btn btn-secondary"
-         href="{% url 'users:user_detail' user.id %}">{% translate "Back" %}</a>
+         href="{% url 'users:user_detail' user.pk %}">{% translate "Back" %}</a>
     </form>
   </div>
 {% endblock content %}

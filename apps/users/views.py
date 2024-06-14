@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.views.generic import DetailView, View
 
@@ -16,39 +16,33 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 class UserUpdateView(LoginRequiredMixin, View):
     template_name = "users/user_update.html"
     success_message = _("Perfil atualizado com sucesso!")
-    form_classes = {
-        "user_form": UserForm,
-        "profile_form": UserProfileForm,
-    }
 
     def get(self, request, *args, **kwargs):
-        user_form = self.form_classes["user_form"](instance=request.user)
-        profile_form = self.form_classes["profile_form"](instance=request.user.profile)
+        form_user = UserForm(instance=request.user)
+        form_profile = UserProfileForm(instance=request.user.profile)
         return render(
             request,
             self.template_name,
             {
-                "user_form": user_form,
-                "profile_form": profile_form,
+                "form_user": form_user,
+                "form_profile": form_profile,
             },
         )
 
     def post(self, request, *args, **kwargs):
-        user_form = self.form_classes["user_form"](request.POST, instance=request.user)
-        profile_form = self.form_classes["profile_form"](request.POST, request.FILES, instance=request.user.profile)
-
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
+        form_user = UserForm(request.POST, instance=request.user)
+        form_profile = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form_user.is_valid() and form_profile.is_valid():
+            user = get_object_or_404(User, pk=request.user.pk)
+            form_user.save()
+            form_profile.save()
             messages.success(request, self.success_message)
-            return redirect("users:user_detail", pk=request.user.pk)
-        messages.error(request, _("Por favor, corrija os erros abaixo."))
-
+            return redirect("users:user_detail", pk=user.pk)
         return render(
             request,
             self.template_name,
             {
-                "user_form": user_form,
-                "profile_form": profile_form,
+                "form_user": form_user,
+                "form_profile": form_profile,
             },
         )
