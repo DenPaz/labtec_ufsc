@@ -18,6 +18,21 @@ DATABASES["default"]["CONN_MAX_AGE"] = env.int(
 )
 
 # -----------------------------------------------------------------------------
+# CACHES
+# -----------------------------------------------------------------------------
+# TODO: Uncomment when Redis is configured
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": env("REDIS_URL"),
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#             "IGNORE_EXCEPTIONS": True,
+#         },
+#     },
+# }
+
+# -----------------------------------------------------------------------------
 # SECURITY
 # -----------------------------------------------------------------------------
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

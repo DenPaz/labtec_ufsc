@@ -10,6 +10,8 @@ from allauth.account.forms import UserTokenForm as AllauthUserTokenForm
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from .models import User, UserProfile
+
 
 class AddEmailForm(AllauthAddEmailForm):
     pass
@@ -170,3 +172,60 @@ class ReauthenticateForm(AllauthReauthenticateForm):
                 "autofocus": True,
             }
         )
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+        ]
+        widgets = {
+            "first_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+        }
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+            "curso",
+            "nacionalidade",
+            "data_nascimento",
+            "foto_perfil",
+            "modo_escuro",
+        ]
+        widgets = {
+            "curso": forms.Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "nacionalidade": forms.Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "data_nascimento": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                }
+            ),
+            "foto_perfil": forms.FileInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "modo_escuro": forms.CheckboxInput(),
+        }

@@ -29,8 +29,8 @@
           role="menu"
           data-accordion="false">
         <li class="nav-item">
-          <a href="{% url 'dashboard:index' %} "
-             class="nav-link {% add_active 'dashboard:index' %}">
+          <a href="{% url 'dashboard:index' %}"
+             class="nav-link {% is_active 'dashboard:index' %}">
             <i class="nav-icon fas fa-th"></i>
             <p>{% translate "Dashboard" %}</p>
           </a>

@@ -1,0 +1,119 @@
+{% extends "users/_base.html" %}
+{% load static i18n %}
+{% block title %}
+  {% translate "Configurações da Conta" %}
+{% endblock title %}
+{% block page_name %}
+  {% translate "Configurações da Conta" %}
+{% endblock page_name %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h5 class="card-title">Informações do perfil</h5>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <img class="profile-user-img img-circle"
+                 src="{{ user.profile.get_profile_picture }}"
+                 alt="user-image"
+                 width="100"
+                 height="100">
+          </div>
+          <h3 class="profile-username text-center">{{ user.get_full_name }}</h3>
+          <p class="text-muted text-center">{{ user.get_user_role }}</p>
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item">
+              <b>Nome</b>
+              <div class="float-right">{{ user.first_name }}</div>
+            </li>
+            <li class="list-group-item">
+              <b>Sobrenome</b>
+              <div class="float-right">{{ user.last_name }}</div>
+            </li>
+            <li class="list-group-item">
+              <b>Curso</b>
+              <div class="float-right">{{ user.profile.get_curso_display }}</div>
+            </li>
+            <li class="list-group-item">
+              <b>Nacionalidade</b>
+              <div class="float-right">
+                {{ user.profile.nacionalidade.name }}
+                <img class="ml-1"
+                     src="{{ user.profile.nacionalidade.flag }}"
+                     alt="flag"
+                     width=""
+                     height="">
+              </div>
+            </li>
+            <li class="list-group-item">
+              <b>Data de nascimento</b>
+              <div class="float-right">{{ user.profile.data_nascimento }}</div>
+            </li>
+            <li class="list-group-item">
+              <b>Modo escuro</b>
+              <div class="float-right">
+                {% if user.profile.modo_escuro %}
+                  <span class="badge badge-success">Ativado</span>
+                {% else %}
+                  <span class="badge badge-danger">Desativado</span>
+                {% endif %}
+              </div>
+            </li>
+          </ul>
+          <a href="{% url 'users:user_update' %}"
+             class="btn btn-default btn-block">
+            <i class="fas fa-edit mr-1"></i> Editar perfil
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h5 class="card-title">Informações da conta</h5>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item border-top-0">
+              <b>Email</b>
+              <div class="float-right">{{ user.email }}</div>
+            </li>
+            <li class="list-group-item">
+              <b>Verificado?</b>
+              <div class="float-right">
+                {% if user.emailaddress_set.first.verified %}
+                  <i class="fas fa-check-circle text-success"></i>
+                {% else %}
+                  <i class="fas fa-times-circle text-danger"></i>
+                {% endif %}
+              </div>
+            </li>
+            <li class="list-group-item">
+              <b>Data de cadastro</b>
+              <div class="float-right">{{ user.date_joined|date:"d M Y" }}</div>
+            </li>
+          </ul>
+          <a href="{% url 'account_change_password' %}"
+             class="btn btn-default btn-block">
+            <i class="fas fa-key mr-1"></i> Alterar senha
+          </a>
+          <a href="{% url 'account_email' %}" class="btn btn-default btn-block">
+            <i class="fas fa-envelope mr-1"></i> Alterar email
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

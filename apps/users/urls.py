@@ -1,5 +1,18 @@
 from django.urls import path
 
+from .views import UserDetailView, UserUpdateView
+
 app_name = "users"
 
-urlpatterns = []
+urlpatterns = [
+    path(
+        route="profile/<uuid:pk>/",
+        view=UserDetailView.as_view(),
+        name="user_detail",
+    ),
+    path(
+        route="profile/update/",
+        view=UserUpdateView.as_view(),
+        name="user_update",
+    ),
+]

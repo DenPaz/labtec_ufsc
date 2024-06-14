@@ -1,13 +1,10 @@
 from allauth.account.decorators import secure_admin_login
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from .models import UserProfile
-
-User = get_user_model()
+from .models import User, UserProfile
 
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     admin.autodiscover()

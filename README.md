@@ -1,4 +1,4 @@
-# LabTec UFSC
+# LabTec-UFSC
 
 Site em desenvolvimento...
 

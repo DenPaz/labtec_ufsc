@@ -18,11 +18,11 @@
          data-toggle="dropdown"
          href="#">
         <span class="d-none d-sm-inline-block mr-2">{{ user.get_full_name }}</span>
-        <img src="{{ user.profile.get_profile_picture }}"
+        <img class="img-circle elevation-2"
+             src="{{ user.profile.get_profile_picture }}"
              alt="user-image"
              width="32"
-             height=""
-             class="img-circle elevation-2">
+             height="32">
       </a>
       <div class="dropdown-menu">
         {% if user.is_superuser %}
@@ -30,10 +30,7 @@
             <i class="fas fa-lock mr-2"></i>{% translate "Admin" %}
           </a>
         {% endif %}
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-user mr-2"></i>{% translate "Perfil" %}
-        </a>
-        <a href="#" class="dropdown-item">
+        <a href="{% url 'users:user_detail' user.pk %}" class="dropdown-item">
           <i class="fas fa-cog mr-2"></i>{% translate "Configurações" %}
         </a>
         <div class="dropdown-divider"></div>

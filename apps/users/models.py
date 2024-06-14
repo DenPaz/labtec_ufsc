@@ -3,33 +3,33 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.templatetags.static import static
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
-from utils.models import BaseModel
 from utils.validators import FileSizeValidator
 
 from .constants import Cursos
 from .managers import UserManager
 
 
-class User(BaseModel, AbstractUser):
+class User(AbstractUser):
     id = models.UUIDField(
+        verbose_name=_("ID"),
         primary_key=True,
         default=uuid.uuid4,
         editable=False,
-        verbose_name=_("ID"),
     )
     first_name = models.CharField(
-        max_length=50,
         verbose_name=_("Nome"),
+        max_length=50,
     )
     last_name = models.CharField(
-        max_length=50,
         verbose_name=_("Sobrenome"),
+        max_length=50,
     )
     email = models.EmailField(
-        unique=True,
         verbose_name=_("E-mail"),
+        unique=True,
     )
     username = None
 
@@ -41,53 +41,65 @@ class User(BaseModel, AbstractUser):
     class Meta:
         verbose_name = _("Usuário")
         verbose_name_plural = _("Usuários")
-        ordering = ["first_name", "last_name"]
 
     def __str__(self):
         return self.get_full_name()
 
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
+
     def clean(self):
-        super().clean()
         self.first_name = self.first_name.title()
         self.last_name = self.last_name.title()
         if self.is_superuser:
             self.is_staff = True
             self.is_active = True
 
+    def get_absolute_url(self):
+        return reverse("users:user_detail", kwargs={"pk": self.pk})
 
-class UserProfile(BaseModel):
+    def get_user_role(self):
+        if self.is_superuser:
+            return _("Administrador")
+        if self.is_staff:
+            return _("Professor")
+        return _("Aluno")
+
+
+class UserProfile(models.Model):
     user = models.OneToOneField(
         User,
-        primary_key=True,
         on_delete=models.CASCADE,
         related_name="profile",
         verbose_name=_("Usuário"),
+        primary_key=True,
     )
     curso = models.CharField(
-        max_length=50,
-        choices=Cursos.choices,
-        blank=True,
         verbose_name=_("Curso"),
+        choices=Cursos.choices,
+        max_length=10,
+        blank=True,
     )
     nacionalidade = CountryField(
-        blank=True,
         verbose_name=_("Nacionalidade"),
+        blank=True,
     )
     data_nascimento = models.DateField(
+        verbose_name=_("Data de nascimento"),
         blank=True,
         null=True,
-        verbose_name=_("Data de nascimento"),
     )
     foto_perfil = models.ImageField(
-        blank=True,
-        validators=[FileSizeValidator(5)],
-        upload_to="users/profile_pictures",
-        help_text=_("Tamanho máximo: 5 MB."),
         verbose_name=_("Foto de perfil"),
+        upload_to="users/profile_pictures",
+        blank=True,
+        help_text=_("Tamanho máximo: 5 MB."),
+        validators=[FileSizeValidator(5)],
     )
     modo_escuro = models.BooleanField(
-        default=False,
         verbose_name=_("Modo escuro"),
+        default=False,
     )
 
     class Meta:
@@ -97,6 +109,9 @@ class UserProfile(BaseModel):
 
     def __str__(self):
         return self.user.get_full_name()
+
+    def get_absolute_url(self):
+        return self.user.get_absolute_url()
 
     def get_profile_picture(self):
         if self.foto_perfil and hasattr(self.foto_perfil, "url"):
