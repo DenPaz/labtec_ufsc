@@ -11,7 +11,7 @@
       | LabTec
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LabTec - UFSC">
+    <meta name="description" content="LabTec-UFSC">
     <meta name="keywords" content="LabTec, UFSC">
     <meta name="author" content="Dennis Paz">
     <link href="{% static 'images/logo_full.svg' %}" rel="icon">
@@ -33,7 +33,7 @@
         {% block content_wrapper %}
           <div class="content-wrapper">
             {% block content_header %}
-              <section class="content-header">
+              <div class="content-header">
                 {% block page_header %}
                   <div class="container-fluid">
                     <div class="row mb-2">
@@ -52,7 +52,7 @@
                     </div>
                   </div>
                 {% endblock page_header %}
-              </section>
+              </div>
             {% endblock content_header %}
             {% block content_outer %}
               <section class="content">

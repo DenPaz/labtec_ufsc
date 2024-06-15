@@ -8,7 +8,6 @@ register = template.Library()
 def is_active(context, *args, **kwargs):
     request = context["request"]
     for url_name in args:
-        print(url_name)
         try:
             if request.path == reverse(url_name):
                 return "active"

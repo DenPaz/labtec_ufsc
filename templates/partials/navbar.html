@@ -27,7 +27,7 @@
       <div class="dropdown-menu">
         {% if user.is_superuser %}
           <a href="{% url 'admin:index' %}" class="dropdown-item">
-            <i class="fas fa-lock mr-2"></i>{% translate "Admin" %}
+            <i class="fas fa-lock mr-2"></i>{% translate "Administração" %}
           </a>
         {% endif %}
         <a href="{% url 'users:user_detail' user.pk %}" class="dropdown-item">
@@ -54,7 +54,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{% translate "Você deseja realmente sair?" %}</p>
+        <p>{% translate "Você tem certeza que deseja sair?" %}</p>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">{% translate "Cancelar" %}</button>
