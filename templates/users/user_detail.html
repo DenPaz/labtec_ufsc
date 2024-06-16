@@ -1,11 +1,15 @@
 {% extends "users/_base.html" %}
 {% load static i18n %}
 {% block title %}
-  {% translate "Configurações da Conta" %}
+  Configurações
 {% endblock title %}
 {% block page_name %}
-  {% translate "Configurações da Conta" %}
+  Configurações
 {% endblock page_name %}
+{% block page_breadcrumbs %}
+  {{ block.super }}
+  <li class="breadcrumb-item active">Detalhes</li>
+{% endblock page_breadcrumbs %}
 {% block content %}
   <div class="row">
     <div class="col-md-6">
@@ -45,11 +49,13 @@
               <b>Nacionalidade</b>
               <div class="float-right">
                 {{ user.profile.nacionalidade.name }}
-                <img class="ml-1"
-                     src="{{ user.profile.nacionalidade.flag }}"
-                     alt="flag"
-                     width=""
-                     height="">
+                {% if user.profile.nacionalidade %}
+                  <img class="ml-1"
+                       src="{{ user.profile.nacionalidade.flag }}"
+                       alt="flag"
+                       width="20"
+                       height="20">
+                {% endif %}
               </div>
             </li>
             <li class="list-group-item">
@@ -67,7 +73,7 @@
               </div>
             </li>
           </ul>
-          <a href="{% url 'users:user_update' %}"
+          <a href="{% url 'users:user_update' user.pk %}"
              class="btn btn-default btn-block">
             <i class="fas fa-edit mr-1"></i> Editar perfil
           </a>

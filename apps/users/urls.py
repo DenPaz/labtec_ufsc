@@ -11,7 +11,7 @@ urlpatterns = [
         name="user_detail",
     ),
     path(
-        route="profile/update/",
+        route="profile/<uuid:pk>/update/",
         view=UserUpdateView.as_view(),
         name="user_update",
     ),

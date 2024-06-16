@@ -52,9 +52,8 @@ class User(AbstractUser):
     def clean(self):
         self.first_name = self.first_name.title()
         self.last_name = self.last_name.title()
-        if self.is_superuser:
-            self.is_staff = True
-            self.is_active = True
+        self.is_active = True if self.is_superuser else self.is_active
+        self.is_staff = True if self.is_superuser else self.is_staff
 
     def get_absolute_url(self):
         return reverse("users:user_detail", kwargs={"pk": self.pk})
@@ -69,7 +68,7 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
-        User,
+        to=User,
         on_delete=models.CASCADE,
         related_name="profile",
         verbose_name=_("Usuário"),
@@ -105,7 +104,6 @@ class UserProfile(models.Model):
     class Meta:
         verbose_name = _("Perfil de usuário")
         verbose_name_plural = _("Perfis de usuários")
-        ordering = ["user__first_name", "user__last_name"]
 
     def __str__(self):
         return self.user.get_full_name()

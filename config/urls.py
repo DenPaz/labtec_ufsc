@@ -9,7 +9,8 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("", include("apps.dashboard.urls", namespace="dashboard")),
     path("users/", include("apps.users.urls", namespace="users")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+]
 
 if settings.DEBUG:
     urlpatterns += [

@@ -18,6 +18,7 @@ class UserAdmin(BaseUserAdmin):
             _("Credenciais de login"),
             {
                 "fields": (
+                    "id",
                     "email",
                     "password",
                 )
@@ -105,6 +106,7 @@ class UserAdmin(BaseUserAdmin):
         "user_permissions",
     )
     readonly_fields = (
+        "id",
         "last_login",
         "date_joined",
     )

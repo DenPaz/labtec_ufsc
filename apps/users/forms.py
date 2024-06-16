@@ -186,14 +186,12 @@ class UserForm(forms.ModelForm):
                 attrs={
                     "type": "text",
                     "class": "form-control",
-                    "id": "first_name",
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
                     "type": "text",
                     "class": "form-control",
-                    "id": "last_name",
                 }
             ),
         }
@@ -213,20 +211,17 @@ class UserProfileForm(forms.ModelForm):
             "curso": forms.Select(
                 attrs={
                     "class": "form-control",
-                    "id": "curso",
                 }
             ),
             "nacionalidade": forms.Select(
                 attrs={
                     "class": "form-control",
-                    "id": "nacionalidade",
                 }
             ),
             "data_nascimento": forms.DateInput(
                 attrs={
                     "type": "date",
                     "class": "form-control",
-                    "id": "data_nascimento",
                 },
             ),
             "foto_perfil": forms.FileInput(
@@ -238,7 +233,6 @@ class UserProfileForm(forms.ModelForm):
             "modo_escuro": forms.CheckboxInput(
                 attrs={
                     "type": "checkbox",
-                    "id": "modo_escuro",
                 }
             ),
         }

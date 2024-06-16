@@ -1,12 +1,11 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import UserManager as DjangoUserManager
-from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(DjangoUserManager):
     def _create_user(self, email: str, password: str | None, **extra_fields):
         if not email:
-            raise ValueError(_("O campo email é obrigatório."))
+            raise ValueError("The given email must be set")
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
@@ -23,8 +22,8 @@ class UserManager(DjangoUserManager):
         extra_fields.setdefault("is_superuser", True)
 
         if extra_fields.get("is_staff") is not True:
-            raise ValueError(_("Superusuário deve ter is_staff=True."))
+            raise ValueError("Superuser must have is_staff=True.")
         if extra_fields.get("is_superuser") is not True:
-            raise ValueError(_("Superusuário deve ter is_superuser=True."))
+            raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(email, password, **extra_fields)
