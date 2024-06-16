@@ -184,12 +184,16 @@ class UserForm(forms.ModelForm):
         widgets = {
             "first_name": forms.TextInput(
                 attrs={
+                    "type": "text",
                     "class": "form-control",
+                    "id": "first_name",
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
+                    "type": "text",
                     "class": "form-control",
+                    "id": "last_name",
                 }
             ),
         }
@@ -209,23 +213,32 @@ class UserProfileForm(forms.ModelForm):
             "curso": forms.Select(
                 attrs={
                     "class": "form-control",
+                    "id": "curso",
                 }
             ),
             "nacionalidade": forms.Select(
                 attrs={
                     "class": "form-control",
+                    "id": "nacionalidade",
                 }
             ),
             "data_nascimento": forms.DateInput(
                 attrs={
-                    "class": "form-control",
                     "type": "date",
-                }
+                    "class": "form-control",
+                    "id": "data_nascimento",
+                },
             ),
             "foto_perfil": forms.FileInput(
                 attrs={
+                    "type": "file",
                     "class": "form-control",
                 }
             ),
-            "modo_escuro": forms.CheckboxInput(),
+            "modo_escuro": forms.CheckboxInput(
+                attrs={
+                    "type": "checkbox",
+                    "id": "modo_escuro",
+                }
+            ),
         }

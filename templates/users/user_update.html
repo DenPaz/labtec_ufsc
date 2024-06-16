@@ -1,20 +1,27 @@
 {% extends "users/_base.html" %}
 {% load static i18n %}
+{% load crispy_forms_tags %}
 {% block title %}
   {% translate "Atualizar Perfil" %}
 {% endblock title %}
 {% block page_name %}
-  {% translate "Atualizar Perfil" %}
+  {% translate "Atualizar Informações do Perfil" %}
 {% endblock page_name %}
 {% block content %}
-  <div class="row">
+  <div class="card card-default">
     <form method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
-      {{ form_user.as_p }}
-      {{ form_profile.as_p }}
-      <button class="btn btn-primary" type="submit">Save changes</button>
-      <a class="btn btn-secondary"
-         href="{% url 'users:user_detail' user.pk %}">{% translate "Back" %}</a>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">{{ form_user|crispy }}</div>
+          <div class="col-md-6">{{ form_profile|crispy }}</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-success">{% translate "Atualizar Perfil" %}</button>
+        <a href="{% url 'users:user_detail' user.pk %}"
+           class="btn btn-secondary">{% translate "Voltar" %}</a>
+      </div>
     </form>
   </div>
 {% endblock content %}
