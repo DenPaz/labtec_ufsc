@@ -1,0 +1,72 @@
+{% extends "account/_base.html" %}
+{% load i18n static %}
+{% block title %}
+  {% translate "Alterar e-mail" %}
+{% endblock title %}
+{% block card_header %}
+  {% translate "Alterar e-mail principal" %}
+{% endblock card_header %}
+{% block card_body %}
+  <form method="post" action="{% url 'account_email' %}">
+    {% csrf_token %}
+    <div class="text-center mb-3">
+      {% if current_emailaddress %}
+        <label class="mr-1" for="current_email">{% translate "E-mail atual" %}:</label>
+        {{ current_emailaddress.email }}
+      {% endif %}
+      {% if new_emailaddress %}
+        <label class="mr-1" for="new_email">
+          {% if not current_emailaddress %}
+            {% translate "E-mail atual" %}:
+          {% else %}
+            {% translate "Alterar para" %}:
+          {% endif %}
+        </label>
+        {{ new_emailaddress.email }}
+        <div class="mt-2">
+          <p class="text-muted">{% translate "Seu e-mail ainda está pendente de verificação." %}</p>
+          <div class="justify-content-between d-flex">
+            <button type="submit"
+                    form="pending-email"
+                    class="btn btn-outline-primary btn-sm"
+                    name="action_send">{% translate "Reenviar verificação" %}</button>
+            {% if current_emailaddress %}
+              <button type="submit"
+                      form="pending-email"
+                      class="btn btn-outline-danger btn-sm"
+                      name="action_remove">{% translate "Cancelar alteração" %}</button>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="input-group mb-3">
+      {{ form.email }}
+      {{ form.email.value.errors }}
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-envelope"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-block" name="action_add">{% translate "Alterar e-mail" %}</button>
+      </div>
+    </div>
+  </form>
+  {% if new_emailaddress %}
+    <form style="display: none"
+          id="pending-email"
+          method="post"
+          action="{% url 'account_email' %}">
+      {% csrf_token %}
+      <input type="hidden" name="email" value="{{ new_emailaddress.email }}">
+    </form>
+  {% endif %}
+{% endblock card_body %}
+{% block card_footer %}
+  <p class="mb-0 mt-3">
+    <a href="{% url 'users:user_detail' user.pk %}">{% translate "Voltar" %}</a>
+  </p>
+{% endblock card_footer %}

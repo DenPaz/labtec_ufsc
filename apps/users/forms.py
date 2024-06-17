@@ -14,7 +14,16 @@ from .models import User, UserProfile
 
 
 class AddEmailForm(AllauthAddEmailForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs.update(
+            {
+                "type": "email",
+                "class": "form-control",
+                "placeholder": _("E-mail"),
+                "autofocus": True,
+            }
+        )
 
 
 class ChangePasswordForm(AllauthChangePasswordForm):
