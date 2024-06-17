@@ -1,12 +1,12 @@
 from django.core.management.base import BaseCommand
 
-from ...models import User
+from ...models import User, UserProfile
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         default_password = "2305"
-        test_super_users = [
+        test_users = [
             {
                 "id": 1,
                 "email": "dppazlopez@gmail.com",
@@ -21,8 +21,6 @@ class Command(BaseCommand):
                 "last_name": "Pereira",
                 "is_superuser": True,
             },
-        ]
-        test_staff_users = [
             {
                 "id": 3,
                 "email": "joaopereira@gmail.com",
@@ -37,8 +35,6 @@ class Command(BaseCommand):
                 "last_name": "Metsen",
                 "is_staff": True,
             },
-        ]
-        test_users = [
             {
                 "id": 5,
                 "email": "xavieroliveira@gmail.com",
@@ -52,16 +48,55 @@ class Command(BaseCommand):
                 "last_name": "Silva",
             },
         ]
-        all_test_users = test_super_users + test_staff_users + test_users
-
-        for test_user in all_test_users:
-            obj, created = User.objects.get_or_create(
+        for test_user in test_users:
+            obj, created = User.objects.update_or_create(
                 email=test_user["email"],
                 defaults={**test_user},
             )
             if created:
                 obj.set_password(default_password)
                 obj.save(update_fields=["password"])
-                self.stdout.write(self.style.SUCCESS(f"User {obj.email} created successfully!"))
-            else:
-                self.stdout.write(self.style.WARNING(f"User {obj.email} already exists!"))
+
+        test_user_profiles = [
+            {
+                "user": User.objects.get(email="dppazlopez@gmail.com"),
+                "curso": "EC",
+                "nacionalidade": "EC",
+                "data_nascimento": "1994-05-23",
+            },
+            {
+                "user": User.objects.get(email="alissonpereira@gmail.com"),
+                "curso": "EC",
+                "nacionalidade": "BR",
+                "data_nascimento": "2001-02-13",
+            },
+            {
+                "user": User.objects.get(email="joaopereira@gmail.com"),
+                "curso": "EE",
+                "nacionalidade": "BR",
+                "data_nascimento": "1998-08-10",
+            },
+            {
+                "user": User.objects.get(email="crismetsen@gmail.com"),
+                "curso": "FISIO",
+                "nacionalidade": "US",
+                "data_nascimento": "2003-11-15",
+            },
+            {
+                "user": User.objects.get(email="xavieroliveira@gmail.com"),
+                "curso": "MED",
+                "nacionalidade": "AR",
+                "data_nascimento": "2000-12-11",
+            },
+            {
+                "user": User.objects.get(email="andresilva@gmail.com"),
+                "curso": "TIC",
+                "nacionalidade": "CO",
+                "data_nascimento": "1990-02-01",
+            },
+        ]
+        for test_user_profile in test_user_profiles:
+            UserProfile.objects.update_or_create(
+                user=test_user_profile["user"],
+                defaults={**test_user_profile},
+            )
