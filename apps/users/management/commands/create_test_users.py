@@ -8,12 +8,14 @@ class Command(BaseCommand):
         default_password = "2305"
         test_super_users = [
             {
+                "id": 1,
                 "email": "dppazlopez@gmail.com",
                 "first_name": "Dennis",
                 "last_name": "Paz",
                 "is_superuser": True,
             },
             {
+                "id": 2,
                 "email": "alissonpereira@gmail.com",
                 "first_name": "Alisson",
                 "last_name": "Pereira",
@@ -22,12 +24,14 @@ class Command(BaseCommand):
         ]
         test_staff_users = [
             {
+                "id": 3,
                 "email": "joaopereira@gmail.com",
                 "first_name": "João",
                 "last_name": "Pereira",
                 "is_staff": True,
             },
             {
+                "id": 4,
                 "email": "crismetsen@gmail.com",
                 "first_name": "Cris",
                 "last_name": "Metsen",
@@ -36,11 +40,13 @@ class Command(BaseCommand):
         ]
         test_users = [
             {
+                "id": 5,
                 "email": "xavieroliveira@gmail.com",
                 "first_name": "Xavier",
                 "last_name": "Oliveira",
             },
             {
+                "id": 6,
                 "email": "andresilva@gmail.com",
                 "first_name": "Andre",
                 "last_name": "Silva",
