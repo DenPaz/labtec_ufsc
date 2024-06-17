@@ -1,7 +1,5 @@
 # LabTec-UFSC
 
-Site em desenvolvimento...
-
 ## Comandos para rodar o projeto localmente
 
 - Clonar o repositório:
@@ -14,17 +12,17 @@ cd labtec_ufsc
 - Configurar ambiente virtual:
 
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
 - Ativar ambiente virtual:
 
 ```bash
-# Windows
-venv\Scripts\activate
+# Se seu sistema operacional for Windows
+.venv\Scripts\activate
 
-# Linux
-source venv/bin/activate
+# Se seu sistema operacional for Linux ou MacOS
+source .venv/bin/activate
 ```
 
 - Instalar dependências:
@@ -33,28 +31,10 @@ source venv/bin/activate
 pip install -r requirements/local.txt
 ```
 
-- Criar migrações:
+- Rodar o projeto:
 
 ```bash
-python manage.py makemigrations
-```
-
-- Aplicar migrações:
-
-```bash
-python manage.py migrate
-```
-
-- Criar superusuário:
-
-```bash
-python manage.py createsuperuser
-```
-
-- Rodar servidor de desenvolvimento:
-
-```bash
-python manage.py runserver
+./script.sh
 ```
 
 ## Licença
