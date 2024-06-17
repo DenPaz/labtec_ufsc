@@ -12,8 +12,8 @@ from .managers import UserManager
 
 class User(AbstractUser):
     id = models.AutoField(
-        primary_key=True,
         verbose_name=_("ID"),
+        primary_key=True,
     )
     first_name = models.CharField(
         verbose_name=_("Nome"),
