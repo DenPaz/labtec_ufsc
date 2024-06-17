@@ -6,12 +6,12 @@ app_name = "users"
 
 urlpatterns = [
     path(
-        route="profile/<uuid:pk>/",
+        route="profile/<int:pk>/",
         view=UserDetailView.as_view(),
         name="user_detail",
     ),
     path(
-        route="profile/<uuid:pk>/update/",
+        route="profile/<int:pk>/update/",
         view=UserUpdateView.as_view(),
         name="user_update",
     ),
