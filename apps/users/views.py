@@ -1,31 +1,31 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.views.generic import DetailView, View
+from utils.viewmixins import UserIsOwnerMixin
 
 from .forms import UserForm, UserProfileForm
 from .models import User
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(LoginRequiredMixin, UserIsOwnerMixin, DetailView):
     model = User
     template_name = "users/user_detail.html"
 
 
-class UserUpdateView(LoginRequiredMixin, View):
+class UserUpdateView(LoginRequiredMixin, UserIsOwnerMixin, View):
     template_name = "users/user_update.html"
     success_message = _("Perfil atualizado com sucesso!")
 
-    def get_context_data(self, **kwargs):
-        context = {
-            "form_user": UserForm(instance=self.request.user),
-            "form_profile": UserProfileForm(instance=self.request.user.profile),
-        }
-        return context
+    def get_object(self):
+        return get_object_or_404(User, pk=self.kwargs["pk"])
 
     def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
+        context = {
+            "form_user": UserForm(instance=request.user),
+            "form_profile": UserProfileForm(instance=request.user.profile),
+        }
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
