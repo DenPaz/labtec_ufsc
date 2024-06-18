@@ -195,12 +195,14 @@ class UserForm(forms.ModelForm):
                 attrs={
                     "type": "text",
                     "class": "form-control",
+                    "placeholder": _("Nome"),
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
                     "type": "text",
                     "class": "form-control",
+                    "placeholder": _("Sobrenome"),
                 }
             ),
         }

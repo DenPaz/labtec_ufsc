@@ -13,11 +13,11 @@ class FileSizeValidator(BaseValidator):
     }
 
     def __init__(self, limit_value, unit="MB"):
-        super().__init__(limit_value)
         if unit not in self.units_in_bytes:
             raise ValueError(f"Unit '{unit}' is not supported. Use 'KB', 'MB' or 'GB'.")
         self.unit = unit
         self.max_size_bytes = limit_value * self.units_in_bytes[unit]
+        super().__init__(limit_value)
 
     def __call__(self, value):
         if value.size > self.max_size_bytes:

@@ -82,6 +82,7 @@ LOCAL_APPS = [
     "apps.utils.config.UtilsConfig",
     "apps.users.config.UsersConfig",
     "apps.dashboard.config.DashboardConfig",
+    "apps.recursos.config.RecursosConfig",
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

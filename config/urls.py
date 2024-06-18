@@ -9,6 +9,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("", include("apps.dashboard.urls", namespace="dashboard")),
     path("users/", include("apps.users.urls", namespace="users")),
+    path("recursos/", include("apps.recursos.urls", namespace="recursos")),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
 

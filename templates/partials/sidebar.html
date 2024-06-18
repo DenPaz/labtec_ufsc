@@ -35,6 +35,40 @@
             <p>{% translate "Dashboard" %}</p>
           </a>
         </li>
+        {% if user.is_staff %}
+          <li class="nav-header">Recursos</li>
+          <li class="nav-item">
+            <a href="{% url 'recursos:computador_list' %}"
+               class="nav-link {% is_active 'recursos:computador_list' %}">
+              <i class="nav-icon fas fa-desktop"></i>
+              <p>Computadores</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tablet-alt"></i>
+              <p>Tablets</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>Kits Tablets</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-microchip"></i>
+              <p>Mesas de Trabalho</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chalkboard"></i>
+              <p>Salas de Reunião</p>
+            </a>
+          </li>
+        {% endif %}
       </ul>
     </nav>
   </div>

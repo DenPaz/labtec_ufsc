@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 from django.views.generic import DetailView, View
 from utils.viewmixins import UserOwnerRequiredMixin
@@ -28,13 +28,15 @@ class UserUpdateView(LoginRequiredMixin, UserOwnerRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form_user = UserForm(request.POST, instance=request.user)
         form_profile = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        context = {
-            "form_user": form_user,
-            "form_profile": form_profile,
-        }
+
         if form_user.is_valid() and form_profile.is_valid():
             form_user.save()
             form_profile.save()
             messages.success(request, self.success_message)
             return redirect("users:user_detail", pk=request.user.pk)
+
+        context = {
+            "form_user": form_user,
+            "form_profile": form_profile,
+        }
         return render(request, self.template_name, context)
