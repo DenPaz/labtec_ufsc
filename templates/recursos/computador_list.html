@@ -14,46 +14,63 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-              <thead>
-                <tr>
-                  <th class="text-center">ID</th>
-                  <th class="text-center">Processador</th>
-                  <th class="text-center">Memoria Ram</th>
-                  <th class="text-center">Placa de Video</th>
-                  <th class="text-center">Armazenamento</th>
-                  <th class="text-center">SO principal</th>
-                  <th class="text-center">SO secundario</th>
-                  <th class="text-center">Fone de ouvido?</th>
-                  <th class="text-center">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for object in object_list %}
-                  <tr>
-                    <td class="text-center">{{ object.id }}</td>
-                    <td class="text-center">{{ object.processador }}</td>
-                    <td class="text-center">{{ object.memoria_ram }}</td>
-                    <td class="text-center">{{ object.placa_video }}</td>
-                    <td class="text-center">{{ object.armazenamento }}</td>
-                    <td class="text-center">{{ object.so_principal }}</td>
-                    <td class="text-center">{{ object.so_secundario }}</td>
-                    <td class="text-center">{{ object.fone_ouvido }}</td>
-                    <td class="text-center">
-                      <a href="#" class="btn btn-warning">
-                        <i class="fas fa-edit"></i>
-                      </a>
-                      <a href="#" class="btn btn-danger">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+        <div class="card-header border-0">
+          <div class="d-flex justify-content-between">
+            <h3 class="card-title">Lista de Computadores</h3>
+            <a href="#" class="btn btn-primary btn-sm">
+              <i class="fas fa-plus"></i> Adicionar
+            </a>
           </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+          <table class="table table-striped text-nowrap table-valign-middle text-center">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Processador</th>
+                <th>Memoria Ram</th>
+                <th>Placa de video</th>
+                <th>Armazenamento</th>
+                <th>SO principal</th>
+                <th>SO secundario</th>
+                <th>Fone de ouvido?</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for object in object_list %}
+                <tr>
+                  <td>
+                    <a href="#">{{ object.id }}</a>
+                  </td>
+                  <td>{{ object.processador }}</td>
+                  <td>{{ object.memoria_ram }}</td>
+                  <td>{{ object.placa_video }}</td>
+                  <td>{{ object.armazenamento }}</td>
+                  <td>{{ object.so_principal }}</td>
+                  <td>{{ object.so_secundario }}</td>
+                  <td>
+                    {% if object.fone_ouvido %}
+                      <i class="fas fa-check text-success"></i>
+                    {% else %}
+                      <i class="fas fa-times text-danger"></i>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="#" class="btn btn-info btn-sm mr-1">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="#" class="btn btn-warning btn-sm mr-1">
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
