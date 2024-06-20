@@ -22,9 +22,6 @@ class Recurso(TimeStampedModel):
         self.clean()
         super().save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        return reverse(f"{self._meta.app_label}:{self._meta.model_name}_detail", kwargs={"pk": self.pk})
-
 
 class Computador(Recurso):
     processador = models.CharField(

@@ -10,7 +10,7 @@ from .models import Computador, KitTablet, MesaTrabalho, OculusVR, SalaReuniao, 
 
 class RecursoListView(LoginRequiredMixin, StaffuserRequiredMixin, SearchMixin, ListView):
     ordering = ["id"]
-    paginate_by = 8
+    paginate_by = 5
 
 
 class RecursoCreateView(LoginRequiredMixin, StaffuserRequiredMixin, CreateView):

@@ -42,18 +42,19 @@
           </div>
         </div>
         <div class="card-body table-responsive p-0">
-          <table class="table table-striped table-valign-middle text-nowrap text-center">
+          <table class="table table-striped table-valign-middle text-center">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Processador</th>
-                <th>Memoria Ram</th>
-                <th>Placa de video</th>
-                <th>Armazenamento</th>
-                <th>SO principal</th>
-                <th>SO secundario</th>
-                <th>Fone de ouvido?</th>
-                <th>Ações</th>
+                <th class="text-nowrap column-id">ID</th>
+                <th class="text-nowrap column-small">Processador</th>
+                <th class="text-nowrap column-small">Memoria Ram</th>
+                <th class="text-nowrap column-small">Placa de video</th>
+                <th class="text-nowrap column-small">Armazenamento</th>
+                <th class="text-nowrap column-small">SO principal</th>
+                <th class="text-nowrap column-small">SO secundario</th>
+                <th class="text-nowrap column-small">Fone de ouvido?</th>
+                <th class="text-nowrap column-small">Esta funcionando?</th>
+                <th class="text-nowrap column-small">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -76,6 +77,13 @@
                     {% endif %}
                   </td>
                   <td>
+                    {% if not object.danificado %}
+                      <i class="fas fa-check text-success"></i>
+                    {% else %}
+                      <i class="fas fa-times text-danger"></i>
+                    {% endif %}
+                  </td>
+                  <td class="text-nowrap">
                     <a href="#" class="btn btn-warning btn-sm">
                       <i class="fas fa-pencil-alt"></i>
                     </a>
