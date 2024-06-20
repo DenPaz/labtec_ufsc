@@ -145,39 +145,22 @@ class Command(BaseCommand):
                 "armazenamento": 512,
             },
         ]
-
-        for test_computador in test_computadores:
-            Computador.objects.update_or_create(
-                **test_computador,
-            )
-
-        for test_tablet in test_tablets:
-            Tablet.objects.update_or_create(
-                **test_tablet,
-            )
-
         test_kits_tables = [
             {
                 "id": 1,
-                "tablet": Tablet.objects.get(id=4),
+                "tablet_id": 4,
                 "caneta": True,
                 "teclado": True,
                 "mouse": False,
             },
             {
                 "id": 2,
-                "tablet": Tablet.objects.get(id=5),
+                "tablet_id": 5,
                 "caneta": True,
                 "teclado": False,
                 "mouse": False,
             },
         ]
-
-        for test_kit_table in test_kits_tables:
-            KitTablet.objects.update_or_create(
-                **test_kit_table,
-            )
-
         test_oculus_vrs = [
             {
                 "id": 1,
@@ -271,17 +254,17 @@ class Command(BaseCommand):
             },
         ]
 
-        for test_oculus_vr in test_oculus_vrs:
-            OculusVR.objects.update_or_create(
-                **test_oculus_vr,
-            )
+        model_data = [
+            (Computador, test_computadores),
+            (Tablet, test_tablets),
+            (KitTablet, test_kits_tables),
+            (OculusVR, test_oculus_vrs),
+            (MesaTrabalho, test_mesas_trabalho),
+            (SalaReuniao, test_salas_reuniao),
+        ]
 
-        for test_mesa_trabalho in test_mesas_trabalho:
-            MesaTrabalho.objects.update_or_create(
-                **test_mesa_trabalho,
-            )
-
-        for test_sala_reuniao in test_salas_reuniao:
-            SalaReuniao.objects.update_or_create(
-                **test_sala_reuniao,
-            )
+        for model, data in model_data:
+            for item in data:
+                if model == KitTablet:
+                    item["tablet"] = Tablet.objects.get(id=item.pop("tablet_id"))
+                model.objects.update_or_create(**item)
