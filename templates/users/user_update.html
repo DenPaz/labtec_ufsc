@@ -11,25 +11,36 @@
   <li class="breadcrumb-item active">Atualizar perfil</li>
 {% endblock page_breadcrumbs %}
 {% block content %}
-  <form method="post"
-        enctype="multipart/form-data"
-        action="{% url 'users:user_update' user.pk %}"
-        novalidate>
-    {% csrf_token %}
-    <div class="row justify-content-center">
-      <div class="card card-primary card-outline col-lg-6">
-        <div class="card-body">
-          {{ form_user|crispy }}
-          {{ form_profile|crispy }}
-        </div>
-        <div class="card-footer">
-          <div class="row justify-content-between">
-            <a href="{% url 'users:user_detail' user.pk %}"
-               class="btn btn-secondary">Voltar</a>
-            <button type="submit" class="btn btn-primary">Atualizar</button>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-primary card-outline">
+        <form method="post"
+              enctype="multipart/form-data"
+              action="{% url 'users:user_update' user.pk %}"
+              novalidate>
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                {{ form_user.first_name|as_crispy_field }}
+                {{ form_user.last_name|as_crispy_field }}
+                {{ form_profile.curso|as_crispy_field }}
+                {{ form_profile.modo_escuro|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form_profile.nacionalidade|as_crispy_field }}
+                {{ form_profile.data_nascimento|as_crispy_field }}
+                {{ form_profile.foto_perfil|as_crispy_field }}
+              </div>
+            </div>
           </div>
-        </div>
+          <div class="card-footer">
+            <a href="{% url 'users:user_detail' user.pk %}"
+               class="btn btn-secondary float-left">Voltar</a>
+            <button type="submit" class="btn btn-primary float-right">Atualizar</button>
+          </div>
+        </form>
       </div>
     </div>
-  </form>
+  </div>
 {% endblock content %}

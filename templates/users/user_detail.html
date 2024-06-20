@@ -4,7 +4,7 @@
   Configurações
 {% endblock title %}
 {% block page_name %}
-  Configurações
+  Configurações da conta
 {% endblock page_name %}
 {% block page_breadcrumbs %}
   {{ block.super }}
@@ -60,7 +60,7 @@
             </li>
             <li class="list-group-item">
               <b>Data de nascimento</b>
-              <div class="float-right">{{ user.profile.data_nascimento }}</div>
+              <div class="float-right">{{ user.profile.data_nascimento|date:"d M Y" }}</div>
             </li>
             <li class="list-group-item">
               <b>Modo escuro</b>
@@ -92,7 +92,7 @@
         </div>
         <div class="card-body">
           <ul class="list-group list-group-unbordered mb-3">
-            <li class="list-group-item border-top-0">
+            <li class="list-group-item border-top-0 pt-0">
               <b>Email</b>
               <div class="float-right">{{ user.email }}</div>
             </li>

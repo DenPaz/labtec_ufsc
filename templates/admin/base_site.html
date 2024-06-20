@@ -4,10 +4,10 @@
   LabTec - UFSC | {% translate "Painel Administrativo" %}
 {% endblock title %}
 {% block extrahead %}
+  {{ block.super }}
   <link href="{% static 'images/logo_icon.svg' %}"
         rel="shortcut icon"
         type="image/x-icon">
-  {{ block.super }}
 {% endblock extrahead %}
 {% block branding %}
   <h1 id="site-name">
