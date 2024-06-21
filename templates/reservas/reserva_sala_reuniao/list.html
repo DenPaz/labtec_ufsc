@@ -1,0 +1,92 @@
+{% extends "reservas/reserva_sala_reuniao/_base.html" %}
+{% load static %}
+{% block title %}
+  Reserva de Salas de Reunião
+{% endblock title %}
+{% block page_name %}
+  Minhas reservas de salas de reunião
+{% endblock page_name %}
+{% block page_breadcrumbs %}
+  {{ block.super }}
+  <li class="breadcrumb-item active">Lista</li>
+{% endblock page_breadcrumbs %}
+{% block content %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="float-right">
+            <a href="{% url 'reservas:reserva_sala_reuniao_create' %}"
+               class="btn btn-primary btn-sm">
+              <i class="fas fa-plus mr-1"></i> Fazer reserva
+            </a>
+          </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+          <table class="table table-striped table-valign-middle text-center">
+            <thead>
+              <tr>
+                <th class="text-nowrap column-small">Data</th>
+                <th class="text-nowrap column-small">Horário</th>
+                <th class="text-nowrap column-small">Sala de reunião</th>
+                <th class="text-nowrap column-small">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for object in object_list %}
+                <tr>
+                  <td>{{ object.data|date:"d M Y" }}</td>
+                  <td>{{ object.get_horario_display }}</td>
+                  <td>{{ object.sala_reuniao.numero }}</td>
+                  <td class="text-nowrap">
+                    <a href="{% url 'reservas:reserva_sala_reuniao_update' object.pk %}"
+                       class="btn btn-warning btn-sm">
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a href="#"
+                       class="btn btn-danger btn-sm"
+                       data-toggle="modal"
+                       data-target="#modal-delete-{{ object.pk }}"
+                       title="apagar">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if page_obj %}
+          <div class="card-footer">{% include "partials/pagination.html" %}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% for object in object_list %}
+    <div class="modal fade" id="modal-delete-{{ object.pk }}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Atenção</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Tem certeza que deseja excluir a reserva do <strong>{{ object.sala_reuniao }}</strong>?
+            </p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <form method="post"
+                  action="{% url 'reservas:reserva_sala_reuniao_delete' object.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Confirmar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock content %}

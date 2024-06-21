@@ -88,6 +88,41 @@
             <p>Computadores</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{% url 'reservas:reserva_tablet_list' %}"
+             class="nav-link {% is_active 'reservas:reserva_tablet_list' %}">
+            <i class="nav-icon fas fa-tablet-alt"></i>
+            <p>Tablets</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'reservas:reserva_kit_tablet_list' %}"
+             class="nav-link {% is_active 'reservas:reserva_kit_tablet_list' %}">
+            <i class="nav-icon fas fa-briefcase"></i>
+            <p>Kits Tablets</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'reservas:reserva_oculus_vr_list' %}"
+             class="nav-link {% is_active 'reservas:reserva_oculus_vr_list' %}">
+            <i class="nav-icon fas fa-vr-cardboard"></i>
+            <p>Oculus VR</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'reservas:reserva_mesa_trabalho_list' %}"
+             class="nav-link {% is_active 'reservas:reserva_mesa_trabalho_list' %}">
+            <i class="nav-icon fas fa-microchip"></i>
+            <p>Mesas de Trabalho</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'reservas:reserva_sala_reuniao_list' %}"
+             class="nav-link {% is_active 'reservas:reserva_sala_reuniao_list' %}">
+            <i class="nav-icon fas fa-chalkboard"></i>
+            <p>Salas de Reunião</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
