@@ -4,7 +4,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, View
-from utils.viewmixins import SearchMixin, StaffuserRequiredMixin
+
+from apps.utils.viewmixins import SearchMixin, StaffuserRequiredMixin
 
 from .forms import (
     ComputadorForm,
