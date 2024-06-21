@@ -56,7 +56,7 @@ class ComputadorListView(RecursoListView):
         "so_principal",
         "so_secundario",
     ]
-    template_name = "recursos/computador_list.html"
+    template_name = "recursos/computador/computador_list.html"
 
 
 class ComputadorCreateView(RecursoCreateView):
@@ -64,7 +64,7 @@ class ComputadorCreateView(RecursoCreateView):
     form_class = ComputadorForm
     success_url = reverse_lazy("recursos:computador_list")
     success_message = "Computador criado com sucesso."
-    template_name = "recursos/computador_create.html"
+    template_name = "recursos/computador/computador_create.html"
 
 
 class ComputadorUpdateView(RecursoUpdateView):
@@ -72,7 +72,7 @@ class ComputadorUpdateView(RecursoUpdateView):
     form_class = ComputadorForm
     success_url = reverse_lazy("recursos:computador_list")
     success_message = "Computador atualizado com sucesso."
-    template_name = "recursos/computador_update.html"
+    template_name = "recursos/computador/computador_update.html"
 
 
 class ComputadorDeleteView(RecursoDeleteView):

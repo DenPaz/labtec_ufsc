@@ -1,0 +1,30 @@
+{% extends "recursos/_base.html" %}
+{% load static i18n %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Adicionar computador
+{% endblock title %}
+{% block page_name %}
+  Adicionar computador
+{% endblock page_name %}
+{% block page_breadcrumbs %}
+  {{ block.super }}
+  <li class="breadcrumb-item active">Adicionar</li>
+{% endblock page_breadcrumbs %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <form method="post" action="{% url 'recursos:computador_create' %}">
+          {% csrf_token %}
+          <div class="card-body">{{ form|crispy }}</div>
+          <div class="card-footer">
+            <a href="{% url 'recursos:computador_list' %}"
+               class="btn btn-secondary float-left">Voltar</a>
+            <button type="submit" class="btn btn-primary float-right">Adicionar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
