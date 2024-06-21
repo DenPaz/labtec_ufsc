@@ -80,6 +80,14 @@
             </a>
           </li>
         {% endif %}
+        <li class="nav-header mt-2">Reservas</li>
+        <li class="nav-item">
+          <a href="{% url 'reservas:reserva_computador_list' %}"
+             class="nav-link {% is_active 'reservas:reserva_computador_list' %}">
+            <i class="nav-icon fas fa-desktop"></i>
+            <p>Computadores</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

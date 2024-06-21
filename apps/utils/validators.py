@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.core.exceptions import ValidationError
 from django.core.validators import BaseValidator
 from django.utils.translation import gettext_lazy as _
@@ -29,3 +31,19 @@ class FileSizeValidator(BaseValidator):
                     "unit": self.unit,
                 },
             )
+
+
+class DateValidator(BaseValidator):
+    message_1 = _("Não é possível escolher uma data anterior à de hoje.")
+    message_2 = _("Escolha um dia útil da semana.")
+
+    def __init__(self):
+        super().__init__(limit_value=None)
+
+    def __call__(self, value):
+        today = date.today()
+        week_day = value.weekday()
+        if value < today:
+            raise ValidationError(self.message_1)
+        if week_day in [5, 6]:
+            raise ValidationError(self.message_2)

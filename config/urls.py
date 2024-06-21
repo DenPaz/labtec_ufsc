@@ -10,6 +10,7 @@ urlpatterns = [
     path("", include("apps.dashboard.urls", namespace="dashboard")),
     path("users/", include("apps.users.urls", namespace="users")),
     path("recursos/", include("apps.recursos.urls", namespace="recursos")),
+    path("reservas/", include("apps.reservas.urls", namespace="reservas")),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
 

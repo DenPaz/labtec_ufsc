@@ -82,6 +82,7 @@ LOCAL_APPS = [
     "apps.users.config.UsersConfig",
     "apps.dashboard.config.DashboardConfig",
     "apps.recursos.config.RecursosConfig",
+    "apps.reservas.config.ReservasConfig",
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
