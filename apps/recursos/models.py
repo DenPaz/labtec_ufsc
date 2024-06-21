@@ -144,8 +144,8 @@ class OculusVR(Recurso):
     )
 
     class Meta:
-        verbose_name = _("Oculus de Realidade Virtual")
-        verbose_name_plural = _("Oculus de Realidade Virtual")
+        verbose_name = _("Oculus VR")
+        verbose_name_plural = _("Oculus VR")
         ordering = ["id"]
 
 

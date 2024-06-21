@@ -1,6 +1,11 @@
 from django.urls import path
 
-from .views import ComputadorCreateView, ComputadorDeleteView, ComputadorListView
+from .views import (
+    ComputadorCreateView,
+    ComputadorDeleteView,
+    ComputadorListView,
+    ComputadorUpdateView,
+)
 
 app_name = "recursos"
 
@@ -14,6 +19,11 @@ urlpatterns = [
         route="computador-create/",
         view=ComputadorCreateView.as_view(),
         name="computador_create",
+    ),
+    path(
+        route="computador-update/<int:pk>/",
+        view=ComputadorUpdateView.as_view(),
+        name="computador_update",
     ),
     path(
         route="computador-delete/<int:pk>/",

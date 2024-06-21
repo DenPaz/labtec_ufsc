@@ -61,7 +61,7 @@
               {% for object in object_list %}
                 <tr>
                   <td>
-                    <a href="#">{{ object.id }}</a>
+                    <a href="{% url 'recursos:computador_update' object.pk %}">{{ object.id }}</a>
                   </td>
                   <td>{{ object.processador }}</td>
                   <td>{{ object.memoria_ram }}</td>
@@ -84,7 +84,8 @@
                     {% endif %}
                   </td>
                   <td class="text-nowrap">
-                    <a href="#" class="btn btn-warning btn-sm">
+                    <a href="{% url 'recursos:computador_update' object.pk %}"
+                       class="btn btn-warning btn-sm">
                       <i class="fas fa-pencil-alt"></i>
                     </a>
                     <a href="#"
