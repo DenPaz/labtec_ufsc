@@ -1,10 +1,10 @@
-{% extends "recursos/computador/_base.html" %}
+{% extends "recursos/tablet/_base.html" %}
 {% load static %}
 {% block title %}
-  Computadores
+  Tablets
 {% endblock title %}
 {% block page_name %}
-  Computadores
+  Tablets
 {% endblock page_name %}
 {% block page_breadcrumbs %}
   {{ block.super }}
@@ -16,13 +16,13 @@
       <div class="card">
         <div class="card-header border-0">
           <div class="float-left">
-            <a href="{% url 'recursos:computador_create' %}"
+            <a href="{% url 'recursos:tablet_create' %}"
                class="btn btn-primary btn-sm float-right">
               <i class="fas fa-plus mr-1"></i> Adicionar
             </a>
           </div>
           <div class="float-right">
-            <form method="get" action="{% url 'recursos:computador_list' %}">
+            <form method="get" action="{% url 'recursos:tablet_list' %}">
               <div class="input-group">
                 <input type="search"
                        name="search"
@@ -32,7 +32,7 @@
                   <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fas fa-search"></i>
                   </button>
-                  <a href="{% url 'recursos:computador_list' %}"
+                  <a href="{% url 'recursos:tablet_list' %}"
                      class="btn btn-secondary btn-sm">
                     <i class="fas fa-sync-alt"></i>
                   </a>
@@ -46,13 +46,11 @@
             <thead>
               <tr>
                 <th class="text-nowrap column-id">Nro.</th>
-                <th class="text-nowrap column-small">Processador</th>
-                <th class="text-nowrap column-small">Memoria Ram</th>
-                <th class="text-nowrap column-small">Placa de video</th>
+                <th class="text-nowrap column-small">Modelo</th>
+                <th class="text-nowrap column-small">Marca</th>
+                <th class="text-nowrap column-small">Tamanho da Tela</th>
+                <th class="text-nowrap column-small">Sistema Operacional</th>
                 <th class="text-nowrap column-small">Armazenamento</th>
-                <th class="text-nowrap column-small">SO principal</th>
-                <th class="text-nowrap column-small">SO secundario</th>
-                <th class="text-nowrap column-small">Fone de ouvido?</th>
                 <th class="text-nowrap column-small">Esta funcionando?</th>
                 <th class="text-nowrap column-small">Ações</th>
               </tr>
@@ -61,21 +59,13 @@
               {% for object in object_list %}
                 <tr>
                   <td>
-                    <a href="{% url 'recursos:computador_update' object.pk %}">{{ object.numero }}</a>
+                    <a href="{% url 'recursos:tablet_update' object.pk %}">{{ object.numero }}</a>
                   </td>
-                  <td>{{ object.processador }}</td>
-                  <td>{{ object.memoria_ram }}</td>
-                  <td>{{ object.placa_video }}</td>
+                  <td>{{ object.modelo }}</td>
+                  <td>{{ object.marca }}</td>
+                  <td>{{ object.tamanho_tela }}</td>
+                  <td>{{ object.so }}</td>
                   <td>{{ object.armazenamento }}</td>
-                  <td>{{ object.so_principal }}</td>
-                  <td>{{ object.so_secundario }}</td>
-                  <td>
-                    {% if object.fone_ouvido %}
-                      <i class="fas fa-check text-success"></i>
-                    {% else %}
-                      <i class="fas fa-times text-danger"></i>
-                    {% endif %}
-                  </td>
                   <td>
                     {% if not object.danificado %}
                       <i class="fas fa-check text-success"></i>
@@ -84,7 +74,7 @@
                     {% endif %}
                   </td>
                   <td class="text-nowrap">
-                    <a href="{% url 'recursos:computador_update' object.pk %}"
+                    <a href="{% url 'recursos:tablet_update' object.pk %}"
                        class="btn btn-warning btn-sm">
                       <i class="fas fa-pencil-alt"></i>
                     </a>
@@ -124,8 +114,7 @@
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <form method="post"
-                  action="{% url 'recursos:computador_delete' object.pk %}">
+            <form method="post" action="{% url 'recursos:tablet_delete' object.pk %}">
               {% csrf_token %}
               <button type="submit" class="btn btn-danger">Confirmar</button>
             </form>

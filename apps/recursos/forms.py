@@ -7,7 +7,7 @@ class ComputadorForm(forms.ModelForm):
     class Meta:
         model = Computador
         fields = [
-            "id",
+            "numero",
             "processador",
             "memoria_ram",
             "placa_video",
@@ -18,7 +18,7 @@ class ComputadorForm(forms.ModelForm):
             "danificado",
         ]
         widgets = {
-            "id": forms.NumberInput(attrs={"class": "form-control"}),
+            "numero": forms.NumberInput(attrs={"class": "form-control"}),
             "processador": forms.TextInput(attrs={"class": "form-control"}),
             "memoria_ram": forms.NumberInput(attrs={"class": "form-control"}),
             "placa_video": forms.TextInput(attrs={"class": "form-control"}),
@@ -34,7 +34,7 @@ class TabletForm(forms.ModelForm):
     class Meta:
         model = Tablet
         fields = [
-            "id",
+            "numero",
             "modelo",
             "marca",
             "tamanho_tela",
@@ -43,7 +43,7 @@ class TabletForm(forms.ModelForm):
             "danificado",
         ]
         widgets = {
-            "id": forms.NumberInput(attrs={"class": "form-control"}),
+            "numero": forms.NumberInput(attrs={"class": "form-control"}),
             "modelo": forms.TextInput(attrs={"class": "form-control"}),
             "marca": forms.TextInput(attrs={"class": "form-control"}),
             "tamanho_tela": forms.NumberInput(attrs={"class": "form-control"}),
@@ -57,7 +57,7 @@ class KitTabletForm(forms.ModelForm):
     class Meta:
         model = KitTablet
         fields = [
-            "id",
+            "numero",
             "tablet",
             "caneta",
             "teclado",
@@ -65,7 +65,7 @@ class KitTabletForm(forms.ModelForm):
             "danificado",
         ]
         widgets = {
-            "id": forms.NumberInput(attrs={"class": "form-control"}),
+            "numero": forms.NumberInput(attrs={"class": "form-control"}),
             "tablet": forms.Select(attrs={"class": "form-control"}),
             "caneta": forms.CheckboxInput(attrs={"class": "form-check-input"}),
             "teclado": forms.CheckboxInput(attrs={"class": "form-check-input"}),
@@ -78,13 +78,13 @@ class OculusVRForm(forms.ModelForm):
     class Meta:
         model = OculusVR
         fields = [
-            "id",
+            "numero",
             "marca",
             "resolucao",
             "danificado",
         ]
         widgets = {
-            "id": forms.NumberInput(attrs={"class": "form-control"}),
+            "numero": forms.NumberInput(attrs={"class": "form-control"}),
             "marca": forms.TextInput(attrs={"class": "form-control"}),
             "resolucao": forms.TextInput(attrs={"class": "form-control"}),
             "danificado": forms.CheckboxInput(attrs={"class": "form-check-input"}),
@@ -95,13 +95,13 @@ class MesaTrabalhoForm(forms.ModelForm):
     class Meta:
         model = MesaTrabalho
         fields = [
-            "id",
+            "numero",
             "monitor",
             "mouse_pad",
             "fone_ouvido",
         ]
         widgets = {
-            "id": forms.NumberInput(attrs={"class": "form-control"}),
+            "numero": forms.NumberInput(attrs={"class": "form-control"}),
             "monitor": forms.CheckboxInput(attrs={"class": "form-check-input"}),
             "mouse_pad": forms.CheckboxInput(attrs={"class": "form-check-input"}),
             "fone_ouvido": forms.CheckboxInput(attrs={"class": "form-check-input"}),
@@ -112,14 +112,14 @@ class SalaReuniaoForm(forms.ModelForm):
     class Meta:
         model = SalaReuniao
         fields = [
-            "id",
+            "numero",
             "mesas",
             "cadeiras",
             "projetor",
             "quadro",
         ]
         widgets = {
-            "id": forms.NumberInput(attrs={"class": "form-control"}),
+            "numero": forms.NumberInput(attrs={"class": "form-control"}),
             "mesas": forms.NumberInput(attrs={"class": "form-control"}),
             "cadeiras": forms.NumberInput(attrs={"class": "form-control"}),
             "projetor": forms.CheckboxInput(attrs={"class": "form-check-input"}),

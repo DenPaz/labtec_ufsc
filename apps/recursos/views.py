@@ -18,7 +18,7 @@ from .models import Computador, KitTablet, MesaTrabalho, OculusVR, SalaReuniao, 
 
 
 class RecursoListView(LoginRequiredMixin, StaffuserRequiredMixin, SearchMixin, ListView):
-    ordering = ["id"]
+    ordering = ["numero"]
     paginate_by = 5
 
 
@@ -50,11 +50,10 @@ class RecursoDeleteView(LoginRequiredMixin, StaffuserRequiredMixin, View):
 class ComputadorListView(RecursoListView):
     model = Computador
     search_fields = [
-        "id",
+        "numero",
         "processador",
         "placa_video",
         "so_principal",
-        "so_secundario",
     ]
     template_name = "recursos/computador/computador_list.html"
 
@@ -78,3 +77,35 @@ class ComputadorUpdateView(RecursoUpdateView):
 class ComputadorDeleteView(RecursoDeleteView):
     model = Computador
     success_url = reverse_lazy("recursos:computador_list")
+
+
+class TabletListView(RecursoListView):
+    model = Tablet
+    search_fields = [
+        "numero",
+        "modelo",
+        "marca",
+        "so",
+    ]
+    template_name = "recursos/tablet/tablet_list.html"
+
+
+class TabletCreateView(RecursoCreateView):
+    model = Tablet
+    form_class = TabletForm
+    success_url = reverse_lazy("recursos:tablet_list")
+    success_message = "Tablet criado com sucesso."
+    template_name = "recursos/tablet/tablet_create.html"
+
+
+class TabletUpdateView(RecursoUpdateView):
+    model = Tablet
+    form_class = TabletForm
+    success_url = reverse_lazy("recursos:tablet_list")
+    success_message = "Tablet atualizado com sucesso."
+    template_name = "recursos/tablet/tablet_update.html"
+
+
+class TabletDeleteView(RecursoDeleteView):
+    model = Tablet
+    success_url = reverse_lazy("recursos:tablet_list")

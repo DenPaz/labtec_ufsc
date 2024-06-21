@@ -4,7 +4,7 @@ from .models import Computador, KitTablet, MesaTrabalho, OculusVR, SalaReuniao, 
 
 
 class RecursoAdmin(admin.ModelAdmin):
-    list_display = ["id"]
+    list_display = ["numero"]
     search_fields = list_display
     readonly_fields = ["created", "modified"]
     list_per_page = 10
@@ -13,7 +13,7 @@ class RecursoAdmin(admin.ModelAdmin):
 @admin.register(Computador)
 class ComputadorAdmin(RecursoAdmin):
     list_display = [
-        "id",
+        "numero",
         "processador",
         "memoria_ram",
         "placa_video",
@@ -27,7 +27,7 @@ class ComputadorAdmin(RecursoAdmin):
 @admin.register(Tablet)
 class TabletAdmin(RecursoAdmin):
     list_display = [
-        "id",
+        "numero",
         "modelo",
         "marca",
         "tamanho_tela",
@@ -39,7 +39,7 @@ class TabletAdmin(RecursoAdmin):
 @admin.register(KitTablet)
 class KitTabletAdmin(RecursoAdmin):
     list_display = [
-        "id",
+        "numero",
         "tablet",
         "caneta",
         "teclado",
@@ -50,7 +50,7 @@ class KitTabletAdmin(RecursoAdmin):
 @admin.register(OculusVR)
 class OculusVRAdmin(RecursoAdmin):
     list_display = [
-        "id",
+        "numero",
         "modelo",
         "marca",
         "resolucao",
@@ -60,7 +60,7 @@ class OculusVRAdmin(RecursoAdmin):
 @admin.register(MesaTrabalho)
 class MesaTrabalhoAdmin(RecursoAdmin):
     list_display = [
-        "id",
+        "numero",
         "monitor",
         "mouse_pad",
         "fone_ouvido",
@@ -70,7 +70,7 @@ class MesaTrabalhoAdmin(RecursoAdmin):
 @admin.register(SalaReuniao)
 class SalaReuniaoAdmin(RecursoAdmin):
     list_display = [
-        "id",
+        "numero",
         "mesas",
         "cadeiras",
         "projetor",

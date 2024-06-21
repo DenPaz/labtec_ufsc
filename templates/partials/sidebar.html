@@ -45,7 +45,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{% url 'recursos:tablet_list' %}"
+               class="nav-link {% is_active 'recursos:tablet_list' %}">
               <i class="nav-icon fas fa-tablet-alt"></i>
               <p>Tablets</p>
             </a>

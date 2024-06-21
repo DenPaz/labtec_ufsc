@@ -1,5 +1,6 @@
+import uuid
+
 from django.db import models
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeStampedModel
 
@@ -7,16 +8,22 @@ from .constants import SO, SOMobile
 
 
 class Recurso(TimeStampedModel):
-    id = models.PositiveIntegerField(
+    id = models.UUIDField(
         verbose_name=_("ID"),
         primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+    )
+    numero = models.PositiveIntegerField(
+        verbose_name=_("Numero de série"),
+        unique=True,
     )
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return f"{self._meta.verbose_name}-{self.id}"
+        return f"{self._meta.verbose_name}-{self.numero}"
 
     def save(self, *args, **kwargs):
         self.clean()
