@@ -59,13 +59,22 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{% url 'recursos:oculus_vr_list' %}"
+               class="nav-link {% is_active 'recursos:oculus_vr_list' %}">
+              <i class="nav-icon fas fa-vr-cardboard"></i>
+              <p>Oculus VR</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'recursos:mesa_trabalho_list' %}"
+               class="nav-link {% is_active 'recursos:mesa_trabalho_list' %}">
               <i class="nav-icon fas fa-microchip"></i>
               <p>Mesas de Trabalho</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{% url 'recursos:sala_reuniao_list' %}"
+               class="nav-link {% is_active 'recursos:sala_reuniao_list' %}">
               <i class="nav-icon fas fa-chalkboard"></i>
               <p>Salas de Reunião</p>
             </a>

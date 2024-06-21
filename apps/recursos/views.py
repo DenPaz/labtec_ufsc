@@ -114,6 +114,7 @@ class TabletDeleteView(RecursoDeleteView):
 class KitTabletListView(RecursoListView):
     model = KitTablet
     search_fields = [
+        "numero",
         "tablet",
     ]
     template_name = "recursos/kit_tablet/kit_tablet_list.html"
@@ -138,3 +139,93 @@ class KitTabletUpdateView(RecursoUpdateView):
 class KitTabletDeleteView(RecursoDeleteView):
     model = KitTablet
     success_url = reverse_lazy("recursos:kit_tablet_list")
+
+
+class OculusVRListView(RecursoListView):
+    model = OculusVR
+    search_fields = [
+        "numero",
+        "modelo",
+        "marca",
+        "resolucao",
+    ]
+    template_name = "recursos/oculus_vr/oculus_vr_list.html"
+
+
+class OculusVRCreateView(RecursoCreateView):
+    model = OculusVR
+    form_class = OculusVRForm
+    success_url = reverse_lazy("recursos:oculus_vr_list")
+    success_message = "Oculus VR criado com sucesso."
+    template_name = "recursos/oculus_vr/oculus_vr_create.html"
+
+
+class OculusVRUpdateView(RecursoUpdateView):
+    model = OculusVR
+    form_class = OculusVRForm
+    success_url = reverse_lazy("recursos:oculus_vr_list")
+    success_message = "Oculus VR atualizado com sucesso."
+    template_name = "recursos/oculus_vr/oculus_vr_update.html"
+
+
+class OculusVRDeleteView(RecursoDeleteView):
+    model = OculusVR
+    success_url = reverse_lazy("recursos:oculus_vr_list")
+
+
+class MesaTrabalhoListView(RecursoListView):
+    model = MesaTrabalho
+    search_fields = [
+        "numero",
+    ]
+    template_name = "recursos/mesa_trabalho/mesa_trabalho_list.html"
+
+
+class MesaTrabalhoCreateView(RecursoCreateView):
+    model = MesaTrabalho
+    form_class = MesaTrabalhoForm
+    success_url = reverse_lazy("recursos:mesa_trabalho_list")
+    success_message = "Mesa de Trabalho criada com sucesso."
+    template_name = "recursos/mesa_trabalho/mesa_trabalho_create.html"
+
+
+class MesaTrabalhoUpdateView(RecursoUpdateView):
+    model = MesaTrabalho
+    form_class = MesaTrabalhoForm
+    success_url = reverse_lazy("recursos:mesa_trabalho_list")
+    success_message = "Mesa de Trabalho atualizada com sucesso."
+    template_name = "recursos/mesa_trabalho/mesa_trabalho_update.html"
+
+
+class MesaTrabalhoDeleteView(RecursoDeleteView):
+    model = MesaTrabalho
+    success_url = reverse_lazy("recursos:mesa_trabalho_list")
+
+
+class SalaReuniaoListView(RecursoListView):
+    model = SalaReuniao
+    search_fields = [
+        "numero",
+    ]
+    template_name = "recursos/sala_reuniao/sala_reuniao_list.html"
+
+
+class SalaReuniaoCreateView(RecursoCreateView):
+    model = SalaReuniao
+    form_class = SalaReuniaoForm
+    success_url = reverse_lazy("recursos:sala_reuniao_list")
+    success_message = "Sala de Reunião criada com sucesso."
+    template_name = "recursos/sala_reuniao/sala_reuniao_create.html"
+
+
+class SalaReuniaoUpdateView(RecursoUpdateView):
+    model = SalaReuniao
+    form_class = SalaReuniaoForm
+    success_url = reverse_lazy("recursos:sala_reuniao_list")
+    success_message = "Sala de Reunião atualizada com sucesso."
+    template_name = "recursos/sala_reuniao/sala_reuniao_update.html"
+
+
+class SalaReuniaoDeleteView(RecursoDeleteView):
+    model = SalaReuniao
+    success_url = reverse_lazy("recursos:sala_reuniao_list")

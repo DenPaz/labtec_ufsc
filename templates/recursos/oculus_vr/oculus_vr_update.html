@@ -1,15 +1,15 @@
-{% extends "recursos/computador/_base.html" %}
+{% extends "recursos/oculus_vr/_base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}
-  Adicionar Computador
+  Atualizar Oculus VR
 {% endblock title %}
 {% block page_name %}
-  Adicionar Computador
+  Atualizar Oculus VR
 {% endblock page_name %}
 {% block page_breadcrumbs %}
   {{ block.super }}
-  <li class="breadcrumb-item active">Adicionar</li>
+  <li class="breadcrumb-item active">Atualizar</li>
 {% endblock page_breadcrumbs %}
 {% block content %}
   <div class="row justify-content-center">
@@ -17,11 +17,14 @@
       <div class="card">
         <form method="post">
           {% csrf_token %}
+          <div class="card-header">
+            <h3 class="card-title">{{ object }}</h3>
+          </div>
           <div class="card-body">{{ form|crispy }}</div>
           <div class="card-footer">
-            <a href="{% url 'recursos:computador_list' %}"
+            <a href="{% url 'recursos:oculus_vr_list' %}"
                class="btn btn-secondary float-left">Voltar</a>
-            <button type="submit" class="btn btn-primary float-right">Adicionar</button>
+            <button type="submit" class="btn btn-primary float-right">Atualizar</button>
           </div>
         </form>
       </div>
