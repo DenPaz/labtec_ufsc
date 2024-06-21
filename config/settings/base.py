@@ -76,7 +76,6 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "django_countries",
-    "widget_tweaks",
 ]
 LOCAL_APPS = [
     "apps.utils.config.UtilsConfig",
