@@ -109,3 +109,32 @@ class TabletUpdateView(RecursoUpdateView):
 class TabletDeleteView(RecursoDeleteView):
     model = Tablet
     success_url = reverse_lazy("recursos:tablet_list")
+
+
+class KitTabletListView(RecursoListView):
+    model = KitTablet
+    search_fields = [
+        "tablet",
+    ]
+    template_name = "recursos/kit_tablet/kit_tablet_list.html"
+
+
+class KitTabletCreateView(RecursoCreateView):
+    model = KitTablet
+    form_class = KitTabletForm
+    success_url = reverse_lazy("recursos:kit_tablet_list")
+    success_message = "Kit Tablet criado com sucesso."
+    template_name = "recursos/kit_tablet/kit_tablet_create.html"
+
+
+class KitTabletUpdateView(RecursoUpdateView):
+    model = KitTablet
+    form_class = KitTabletForm
+    success_url = reverse_lazy("recursos:kit_tablet_list")
+    success_message = "Kit Tablet atualizado com sucesso."
+    template_name = "recursos/kit_tablet/kit_tablet_update.html"
+
+
+class KitTabletDeleteView(RecursoDeleteView):
+    model = KitTablet
+    success_url = reverse_lazy("recursos:kit_tablet_list")

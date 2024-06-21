@@ -5,6 +5,10 @@ from .views import (
     ComputadorDeleteView,
     ComputadorListView,
     ComputadorUpdateView,
+    KitTabletCreateView,
+    KitTabletDeleteView,
+    KitTabletListView,
+    KitTabletUpdateView,
     TabletCreateView,
     TabletDeleteView,
     TabletListView,
@@ -53,5 +57,25 @@ urlpatterns = [
         route="tablet-delete/<uuid:pk>/",
         view=TabletDeleteView.as_view(),
         name="tablet_delete",
+    ),
+    path(
+        route="kit_tablet-list/",
+        view=KitTabletListView.as_view(),
+        name="kit_tablet_list",
+    ),
+    path(
+        route="kit_tablet-create/",
+        view=KitTabletCreateView.as_view(),
+        name="kit_tablet_create",
+    ),
+    path(
+        route="kit_tablet-update/<uuid:pk>/",
+        view=KitTabletUpdateView.as_view(),
+        name="kit_tablet_update",
+    ),
+    path(
+        route="kit_tablet-delete/<uuid:pk>/",
+        view=KitTabletDeleteView.as_view(),
+        name="kit_tablet_delete",
     ),
 ]

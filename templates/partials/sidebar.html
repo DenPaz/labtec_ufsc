@@ -52,7 +52,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{% url 'recursos:kit_tablet_list' %}"
+               class="nav-link {% is_active 'recursos:kit_tablet_list' %}">
               <i class="nav-icon fas fa-briefcase"></i>
               <p>Kits Tablets</p>
             </a>
