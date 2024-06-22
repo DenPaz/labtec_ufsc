@@ -13,3 +13,10 @@
 .column-large {
   width: 150px;
 }
+
+.small-chart {
+  min-height: 250px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 100%;
+}

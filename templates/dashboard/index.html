@@ -4,11 +4,463 @@
   Início
 {% endblock title %}
 {% block page_name %}
-  {% translate "Bemvindo!" %}
+  Bemvindo!
 {% endblock page_name %}
 {% block page_breadcrumbs %}
   {{ block.super }}
   <li class="breadcrumb-item active">Início</li>
 {% endblock page_breadcrumbs %}
 {% block content %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header border-0">
+          <h3 class="card-title">
+            <i class="fas fa-desktop mr-1"></i> Reservas de Computadores
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="reservasComputadoresChart" class="small-chart"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-center p-1">
+          <a href="{% url 'reservas:reserva_computador_list' %}"
+             class="small-box-footer">
+            Ver mais <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header border-0">
+          <h3 class="card-title">
+            <i class="fas fa-tablet mr-1"></i> Reservas de Tablets
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="reservasTabletsChart" class="small-chart"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-center p-1">
+          <a href="{% url 'reservas:reserva_tablet_list' %}"
+             class="small-box-footer">
+            Ver mais <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header border-0">
+          <h3 class="card-title">
+            <i class="fas fa-briefcase mr-1"></i> Reservas de Kits de Tablets
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="reservasKitsTabletsChart" class="small-chart"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-center p-1">
+          <a href="{% url 'reservas:reserva_kit_tablet_list' %}"
+             class="small-box-footer">
+            Ver mais <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header border-0">
+          <h3 class="card-title">
+            <i class="fas fa-vr-cardboard mr-1"></i> Reservas de Oculus VR
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="reservasOculusVRChart" class="small-chart"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-center p-1">
+          <a href="{% url 'reservas:reserva_oculus_vr_list' %}"
+             class="small-box-footer">
+            Ver mais <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header border-0">
+          <h3 class="card-title">
+            <i class="fas fa-microchip mr-1"></i> Reservas de Mesas de Trabalho
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="reservasMesasTrabalhoChart" class="small-chart"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-center p-1">
+          <a href="{% url 'reservas:reserva_mesa_trabalho_list' %}"
+             class="small-box-footer">
+            Ver mais <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card card-primary card-outline">
+        <div class="card-header border-0">
+          <h3 class="card-title">
+            <i class="fas fa-chalkboard mr-1"></i> Reservas de Salas de Reunião
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="reservasSalasReuniaoChart" class="small-chart"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-center p-1">
+          <a href="{% url 'reservas:reserva_sala_reuniao_list' %}"
+             class="small-box-footer">
+            Ver mais <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
+{% block extra_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('reservasComputadoresChart').getContext('2d');
+      var labels = [{% for computador in reservas_computadores %}'{{ computador.numero }}',{% endfor %}];
+      var dataValues = [{% for computador in reservas_computadores %}{{ computador.total_reservas }},{% endfor %}];
+
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Número do Computador'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Número de Reservas'
+            },
+          }],
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('reservasTabletsChart').getContext('2d');
+      var labels = [{% for tablet in reservas_tablets %}'{{ tablet.numero }}',{% endfor %}];
+      var dataValues = [{% for tablet in reservas_tablets %}{{ tablet.total_reservas }},{% endfor %}];
+
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Número da Tablet'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Número de Reservas'
+            },
+          }],
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('reservasKitsTabletsChart').getContext('2d');
+      var labels = [{% for kit_tablet in reservas_kits_tablets %}'{{ kit_tablet.numero }}',{% endfor %}];
+      var dataValues = [{% for kit_tablet in reservas_kits_tablets %}{{ kit_tablet.total_reservas }},{% endfor %}];
+
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Número do Kit Tablet'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Número de Reservas'
+            },
+          }],
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('reservasOculusVRChart').getContext('2d');
+      var labels = [{% for oculus_vr in reservas_oculus_vr %}'{{ oculus_vr.numero }}',{% endfor %}];
+      var dataValues = [{% for oculus_vr in reservas_oculus_vr %}{{ oculus_vr.total_reservas }},{% endfor %}];
+
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Número do Oculus VR'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Número de Reservas'
+            },
+          }],
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('reservasMesasTrabalhoChart').getContext('2d');
+      var labels = [{% for mesa_trabalho in reservas_mesas_trabalho %}'{{ mesa_trabalho.numero }}',{% endfor %}];
+      var dataValues = [{% for mesa_trabalho in reservas_mesas_trabalho %}{{ mesa_trabalho.total_reservas }},{% endfor %}];
+
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Número da Mesa de Trabalho'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Número de Reservas'
+            },
+          }],
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('reservasSalasReuniaoChart').getContext('2d');
+      var labels = [{% for sala_reuniao in reservas_salas_reuniao %}'{{ sala_reuniao.numero }}',{% endfor %}];
+      var dataValues = [{% for sala_reuniao in reservas_salas_reuniao %}{{ sala_reuniao.total_reservas }},{% endfor %}];
+
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Número da Sala de Reunião'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Número de Reservas'
+            },
+          }],
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      };
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    });
+  </script>
+{% endblock extra_js %}
