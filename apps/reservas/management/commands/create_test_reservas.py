@@ -648,6 +648,24 @@ class Command(BaseCommand):
                 "sala_reuniao": 1,
             },
             {
+                "user": 5,
+                "data": "2024-06-13",
+                "horario": 5,
+                "sala_reuniao": 2,
+            },
+            {
+                "user": 5,
+                "data": "2024-06-10",
+                "horario": 3,
+                "sala_reuniao": 2,
+            },
+            {
+                "user": 5,
+                "data": "2024-06-02",
+                "horario": 6,
+                "sala_reuniao": 2,
+            },
+            {
                 "user": 6,
                 "data": "2024-02-13",
                 "horario": 3,

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import IndexView
+from .views import ConsultasView, IndexView
 
 app_name = "dashboard"
 
@@ -9,5 +9,10 @@ urlpatterns = [
         route="",
         view=IndexView.as_view(),
         name="index",
+    ),
+    path(
+        route="consultas/",
+        view=ConsultasView.as_view(),
+        name="consultas",
     ),
 ]

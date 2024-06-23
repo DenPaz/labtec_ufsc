@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.views.generic import TemplateView
 
 from apps.recursos.models import (
@@ -10,6 +10,14 @@ from apps.recursos.models import (
     OculusVR,
     SalaReuniao,
     Tablet,
+)
+from apps.reservas.models import (
+    ReservaComputador,
+    ReservaKitTablet,
+    ReservaMesaTrabalho,
+    ReservaOculusVR,
+    ReservaSalaReuniao,
+    ReservaTablet,
 )
 
 User = get_user_model()
@@ -100,3 +108,74 @@ class IndexView(LoginRequiredMixin, TemplateView):
         context["reservas_salas_reuniao"] = reservas_salas_reuniao
 
         return context
+
+
+class ConsultasView(LoginRequiredMixin, TemplateView):
+    template_name = "dashboard/consultas.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["consulta_1"] = self.get_consulta_1()
+        context["consulta_2"] = self.get_consulta_2()
+        context["consulta_3"] = self.get_consulta_3()
+        return context
+
+    # Consulta 1: Listar os usuários que fizeram reserva de computadores, com a quantidade de reservas feitas por cada um e o número do computador reservado.
+    def get_consulta_1(self):
+        consulta_1 = (
+            User.objects.filter(
+                reservacomputador__isnull=False,
+            )
+            .values(
+                "first_name",
+                "last_name",
+                "reservacomputador__computador__numero",
+            )
+            .annotate(
+                total_reservas=Count("reservacomputador"),
+            )
+            .order_by(
+                "first_name",
+                "last_name",
+                "reservacomputador__computador__numero",
+            )
+        )
+        return consulta_1
+
+    # Consulta 2: Listar os usuários que fizeram uma reserva de uma sala de reunião que tem um projetor no mês de junho de 2024 com a quantidade de reservas feitas por cada um e o número da sala reservada.
+    def get_consulta_2(self):
+        consulta_2 = (
+            User.objects.filter(
+                reservasalareuniao__sala_reuniao__projetor=True,
+                reservasalareuniao__data__year=2024,
+                reservasalareuniao__data__month=6,
+            )
+            .values(
+                "first_name",
+                "last_name",
+                "reservasalareuniao__sala_reuniao__numero",
+            )
+            .annotate(
+                total_reservas=Count("reservasalareuniao"),
+            )
+            .order_by("first_name", "last_name")
+        )
+        return consulta_2
+
+    # Consulta 3: Listar os usuários que fizeram reserva de mesa de trabalho ou kit tablet, com a quantidade de reservas feitas por cada um e o número da mesa de trabalho ou kit tablet reservado.
+    def get_consulta_3(self):
+        consulta_3 = (
+            User.objects.filter(Q(reservamesatrabalho__isnull=False) | Q(reservakittablet__isnull=False))
+            .values(
+                "first_name",
+                "last_name",
+                "reservamesatrabalho__mesa_trabalho__numero",
+                "reservakittablet__kit_tablet__numero",
+            )
+            .annotate(
+                total_reservas_mesa=Count("reservamesatrabalho"),
+                total_reservas_kit=Count("reservakittablet"),
+            )
+            .order_by("first_name", "last_name")
+        )
+        return consulta_3

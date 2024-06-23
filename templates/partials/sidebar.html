@@ -35,6 +35,13 @@
             <p>{% translate "Dashboard" %}</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{% url 'dashboard:consultas' %}"
+             class="nav-link {% is_active 'dashboard:consultas' %}">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>{% translate "Consultas" %}</p>
+          </a>
+        </li>
         {% if user.is_staff %}
           <li class="nav-header mt-2">Recursos</li>
           <li class="nav-item">
