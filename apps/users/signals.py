@@ -11,16 +11,9 @@ from .models import User, UserProfile
 def create_user_related_objects(sender, instance, created, **kwargs):
     if created:
         try:
-            with transaction.atomic():
-                UserProfile.objects.create(
-                    user=instance,
-                )
-                EmailAddress.objects.create(
-                    user=instance,
-                    email=instance.email,
-                    primary=True,
-                    verified=False,
-                )
+            UserProfile.objects.create(
+                user=instance,
+            )
         except Exception as e:
             if settings.DEBUG:
                 raise e
