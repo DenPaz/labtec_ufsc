@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.db import connection
 
 from ...models import User, UserProfile
 
@@ -99,4 +100,9 @@ class Command(BaseCommand):
             UserProfile.objects.update_or_create(
                 user=test_user_profile["user"],
                 defaults={**test_user_profile},
+            )
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT setval(pg_get_serial_sequence('users_user', 'id'), coalesce(max(id), 1) + 1, false) FROM users_user;"
             )
